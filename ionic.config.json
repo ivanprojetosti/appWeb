@@ -1,0 +1,7 @@
+{
+  "name": "appWeb",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
