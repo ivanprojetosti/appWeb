@@ -1,9 +1,26 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>symptoms-form</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title>Form Sintomas</ion-title>
+    </ion-toolbar>
 </ion-header>
 
+<!-- Template-driven [()] ngModel -->
 <ion-content>
 
+    <form (ngSubmit)="onSubmit()">
+        <ion-item class="ion-margin-top" lines="none">
+            <ion-label position="stacked">Sintoma</ion-label>
+            <ion-input name="name" type="text" placeholder="Nome do Sintoma" [(ngModel)]="symptoms.name"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-margin-top" lines="none">
+            <ion-label position="stacked">Descrição</ion-label>
+            <ion-input name="description" type="text" placeholder="Descrição do Sintoma" [(ngModel)]="symptoms.description"></ion-input>
+        </ion-item>
+
+
+        <ion-button id="salvar" expand="block" type="submit" color="primary">Salvar</ion-button>
+        <ion-button expand="block" [routerLink]="['/symptoms-list']" color="danger">Cancelar</ion-button>
+
+    </form>
 </ion-content>

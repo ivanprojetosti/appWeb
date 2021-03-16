@@ -25,22 +25,24 @@
                     </ion-col>
                     <ion-col>
                         <!--3-->
+                        <span>{{ symptom.description}}</span>
+                    </ion-col>
+                    <ion-col>
+                        <!--4-->
+
                         <ion-button color="warning" [routerLink]="['#']">
                             <ion-icon name="create-outline"></ion-icon>
                         </ion-button>
                     </ion-col>
                     <ion-col>
-                        <!--4-->
-                        <ion-button color="danger" (click)="removeSymptom(symptom)">
+                        <!--5-->
+                        <ion-button color="danger" (click)="removeSymptom(symptom.id)">
                             <ion-icon name="trash"></ion-icon>
                         </ion-button>
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="3">
-                        <!--1-->
-                        <!-- <span [innerHTML]="symptom.description"></span> -->
-                    </ion-col>
+
                 </ion-row>
             </ion-grid>
             <!--/grid -->
@@ -48,7 +50,7 @@
     </ion-list>
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button [routerLink]="['#']">
+        <ion-fab-button [routerLink]="['/symptoms-form']">
             <ion-icon name="add-circle-outline">Adicionar</ion-icon>
         </ion-fab-button>
     </ion-fab>

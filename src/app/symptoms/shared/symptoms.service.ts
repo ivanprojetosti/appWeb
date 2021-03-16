@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Symptoms } from './interface/symptoms';
+//import { Symptoms } from './interface/symptoms';
 import { map } from 'rxjs/operators';
+import { Symptoms } from './symptoms';
 @Injectable({
   providedIn: 'root'
 })
 export class SymptomsService {
+  //addSymptoms(symptoms: Symptoms) {
+    //throw new Error('Method not implemented.');
+  
 
 private symptomsColletion: AngularFirestoreCollection<Symptoms>;
   constructor(
@@ -33,8 +37,22 @@ getById(id: string){  // BUSCAR POR ID
 
 }
 
-add (){
+addSymptoms (symptoms: Symptoms ){
+//1 momento
+  //console.log(symptoms);
+//return this.symptomsColletion.add(symptoms);
 
+
+//2 momemento
+//criar id 
+
+const id = this.afs.createId();
+this.afs.collection('symptoms').doc(id).set(
+{
+  name: symptoms.name,
+  description: symptoms.description
+}
+)
 
 }
 
@@ -43,8 +61,8 @@ updateSymptoms(){
 
 }
 
-deleteSymptoms(){
-
+deleteSymptoms(id: string){
+this.symptomsColletion.doc<Symptoms>(id).delete();
 
 }
 
