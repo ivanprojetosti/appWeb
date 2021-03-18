@@ -34,30 +34,32 @@ private symptomsColletion: AngularFirestoreCollection<Symptoms>;
 }
 
 getById(id: string){  // BUSCAR POR ID
+  return this.symptomsColletion.doc<Symptoms>(id).valueChanges();
 
 }
 
 addSymptoms (symptoms: Symptoms ){
 //1 momento
-  //console.log(symptoms);
+
+this.afs.collection('symptoms').doc().set(Object.assign({}, symptoms))
 //return this.symptomsColletion.add(symptoms);
 
 
 //2 momemento
 //criar id 
 
-const id = this.afs.createId();
-this.afs.collection('symptoms').doc(id).set(
-{
-  name: symptoms.name,
-  description: symptoms.description
-}
-)
+// const id = this.afs.createId();
+// this.afs.collection('symptoms').doc(id).set(
+// {
+//   name: symptoms.name,
+//   description: symptoms.description
+// }
+// )
 
 }
 
-updateSymptoms(){
-
+updateSymptoms(symptoms: Symptoms, id: string){
+  this.symptomsColletion.doc<Symptoms>(id).update(Object.assign({}, symptoms));
 
 }
 

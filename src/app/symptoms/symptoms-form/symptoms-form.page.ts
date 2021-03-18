@@ -12,6 +12,7 @@ import { ToastService } from 'src/app/shared/toast.service';
 export class SymptomsFormPage implements OnInit {
 symptoms: Symptoms;
 private symptomsId: string;
+title: string;
 
 constructor(private activateRoute: ActivatedRoute,
               private symptomsService: SymptomsService,
@@ -20,12 +21,44 @@ constructor(private activateRoute: ActivatedRoute,
 
   ngOnInit(){
     this.symptoms = new Symptoms();
+    this.symptomsId = this.activateRoute.snapshot.params['id'];
+    this.symptomsId ? this.title = "EDITAR Sintoma" : this.title = "NOVO Sintoma";
+    
+    if(this.symptomsId){
+      const subscribe = this.symptomsService.getById(this.symptomsId).subscribe( (data: any) =>{
+       subscribe.unsubscribe();
+       const { name, description, imgUrl, filePath } = data;
+       this.symptoms.name = name;
+       this.symptoms.description = description;
+     })
+
+
+
+    }
+
+
     }
 
     async onSubmit(){
-this.symptomsId = this.activateRoute.snapshot.params['id'];
+//this.symptomsId = this.activateRoute.snapshot.params['id'];
 if (this.symptomsId){
 //UPDATE
+
+try {
+  await this.symptomsService.updateSymptoms(this.symptoms, this.symptomsId);
+  // mensagem OK
+  this.toast.showMessageBottom('Sintoma alterado com sucesso!!!','success')
+  this.router.navigate(['/symptoms-list']);
+} catch (error) {
+  // mensagem error
+  this.toast.showMessageTop(error, 'danger');
+  console.log(error);
+}
+
+
+
+
+
 }else{
   //ADD
   try {

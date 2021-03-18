@@ -30,7 +30,7 @@
                     <ion-col>
                         <!--4-->
 
-                        <ion-button color="warning" [routerLink]="['#']">
+                        <ion-button color="warning" [routerLink]="['/symptoms-form/edit', symptom.id]">
                             <ion-icon name="create-outline"></ion-icon>
                         </ion-button>
                     </ion-col>
@@ -50,7 +50,7 @@
     </ion-list>
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button [routerLink]="['/symptoms-form']">
+        <ion-fab-button [routerLink]="['/symptoms-form/new']">
             <ion-icon name="add-circle-outline">Adicionar</ion-icon>
         </ion-fab-button>
     </ion-fab>
